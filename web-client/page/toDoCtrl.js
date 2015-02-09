@@ -3,9 +3,8 @@
 angular.module('myApp.toDoCtrl', [])
 
     .controller('View1Ctrl', ['$http', '$scope', '$modal', function ($http, $scope, $modal) {
-        $scope.task = 's';
         $scope.moveToBacklog = function (task) {
-          task.type = 0;
+            task.type = 0;
         };
         $scope.moveToToDo = function (task) {
             task.type = 1;
@@ -17,38 +16,39 @@ angular.module('myApp.toDoCtrl', [])
             task.type = 3;
         };
 
-        $scope.isInBacklog = function(task) {
+        $scope.isInBacklog = function (task) {
             return task.type === 0;
         };
 
-        $scope.isToDo = function(task) {
+        $scope.isToDo = function (task) {
             return task.type === 1;
         };
 
-        $scope.isInProgress = function(task) {
+        $scope.isInProgress = function (task) {
             return task.type === 2;
         };
 
-        $scope.isDone = function(task) {
+        $scope.isDone = function (task) {
             return task.type === 3;
         };
         var addNewToDoTask = function (description) {
-           var task = {'id':1, content:description, type:1}
+            $scope.lastId++;
+            var task = {'id': $scope.lastId, content: description, type: 1}
             $scope.tasks.push(task);
         };
-        $scope.openModal = function() {
-            var modalInstance =$modal.open({
+        $scope.openModal = function () {
+            var modalInstance = $modal.open({
                 templateUrl: 'page/new-task-modal.html',
-                size:'sm',
+                size: 'sm',
                 controller: 'NewTaskCtrl'
             });
-            modalInstance.result.then(function(result){
+            modalInstance.result.then(function (result) {
                 addNewToDoTask(result);
             })
         };
 
 
-
+        $scope.lastId = 6;
         $scope.tasks = [
             {
                 'id': 0,
@@ -78,7 +78,7 @@ angular.module('myApp.toDoCtrl', [])
             {
                 'id': 5,
                 'content': 'Done',
-                'type':3
+                'type': 3
             },
             {
                 'id': 6,

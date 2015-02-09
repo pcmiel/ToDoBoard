@@ -6,7 +6,7 @@
         <textarea type="text" id="inputDesc" class="form-control" placeholder="Description" rows="3" ng-model="newTask"></textarea>
     </div>
     <div class="modal-footer">
-        <button class="btn btn-primary" ng-click="ok(newTask)">OK</button>
+        <button class="btn btn-primary" ng-click="ok(newTask)" ng-disabled="newTask =='' || newTask == null">OK</button>
         <button class="btn btn-warning" ng-click="cancel()">Cancel</button>
     </div>
 </div>
