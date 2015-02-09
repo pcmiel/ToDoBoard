@@ -17,14 +17,12 @@
                 <artifactId>grunt-maven-plugin</artifactId>
                 <version>1.5.0</version>
                 <configuration>
-                    <!-- relative to src/main/webapp/ -->
-                    <!--<jsSourceDirectory>../../../</jsSourceDirectory>-->
                 </configuration>
                 <executions>
                     <execution>
                         <goals>
-                            <!--<goal>npm</goal>-->
-                            <goal>grunt</goal>
+                            <goal>npm</goal>
+                            <!--<goal>grunt</goal>-->
                         </goals>
                     </execution>
                 </executions>
