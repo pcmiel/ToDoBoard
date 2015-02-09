@@ -1,13 +1,6 @@
 'use strict';
 
-angular.module('myApp.view1', ['ngRoute'])
-
-    .config(['$routeProvider', function ($routeProvider) {
-        $routeProvider.when('/view1', {
-            templateUrl: 'view1/view1.html',
-            controller: 'View1Ctrl'
-        });
-    }])
+angular.module('myApp.toDoCtrl', [])
 
     .controller('View1Ctrl', ['$http', '$scope', '$modal', function ($http, $scope, $modal) {
         $scope.task = 's';
@@ -45,7 +38,7 @@ angular.module('myApp.view1', ['ngRoute'])
         };
         $scope.openModal = function() {
             var modalInstance =$modal.open({
-                templateUrl: 'view1/new-task-modal.html',
+                templateUrl: 'page/new-task-modal.html',
                 size:'sm',
                 controller: 'NewTaskCtrl'
             });
@@ -109,6 +102,6 @@ angular.module('myApp.view1', ['ngRoute'])
     .directive('singleTask', function () {
         return {
             restrict: 'E',
-            templateUrl: 'view1/single-task.html'
+            templateUrl: 'page/single-task.html'
         };
     });

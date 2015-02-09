@@ -1,0 +1,93 @@
+<div ng-controller="View1Ctrl">
+    <div class="jumbotron">
+        <h1>ToDo list</h1>
+
+        <p>This site created to learn AngularJS and Bootstrap</p>
+    </div>
+    <div class="panel">
+        <button class="btn btn-lg btn-primary" ng-click="openModal()">Add new</button>
+    </div>
+    <div class="row">
+        <div class="col-xs-3">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h3 class="panel-title">Backlog</h3>
+                </div>
+                <div class="panel-body" ng-repeat="task in tasks | filter:isInBacklog">
+                    <div class="panel panel-default">
+                        <div class="panel-body">
+                            <single-task></single-task>
+                            <button type="button" class="btn btn-info pull-right" ng-click="moveToToDo(task)">
+                                <span class="glyphicon glyphicon-arrow-right"></span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-xs-3">
+            <div class="panel panel-info">
+                <div class="panel-heading">
+                    <h3 class="panel-title">ToDo</h3>
+                </div>
+                <div class="panel-body" ng-repeat="task in tasks|filter:isToDo">
+                    <div class="panel panel-default">
+                        <div class="panel-body">
+                            <single-task></single-task>
+                            <button type="button" class="btn btn-default" ng-click="moveToBacklog(task)">
+                                <span class="glyphicon glyphicon-remove"></span>
+                            </button>
+                            <button type="button" class="btn btn-primary pull-right" ng-click="moveToInProgress(task)">
+                                <span class="glyphicon glyphicon-arrow-right"></span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-xs-3">
+            <div class="panel panel-primary">
+                <div class="panel-heading">
+                    <h3 class="panel-title">In progress</h3>
+                </div>
+                <div class="panel-body" ng-repeat="task in tasks |filter:isInProgress">
+                    <div class="panel panel-default">
+                        <div class="panel-body">
+                            <single-task></single-task>
+                            <button type="button" class="btn btn-default" ng-click="moveToBacklog(task)">
+                                <span class="glyphicon glyphicon-remove"></span>
+                            </button>
+                            <button type="button" class="btn btn-info">
+                                <span class="glyphicon glyphicon-arrow-left" ng-click="moveToToDo(task)"></span>
+                            </button>
+                            <button type="button" class="btn btn-success pull-right" ng-click="moveToDone(task)">
+                                <span class="glyphicon glyphicon-ok-sign"></span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <div class="col-xs-3">
+            <div class="panel panel-success">
+                <div class="panel-heading">
+                    <h3 class="panel-title">Done</h3>
+                </div>
+                <div class="panel-body" ng-repeat="task in tasks| filter:isDone">
+                    <div class="panel panel-default">
+                        <div class="panel-body">
+                            <single-task></single-task>
+                            <button type="button" class="btn btn-default" ng-click="moveToBacklog(task)">
+                                <span class="glyphicon glyphicon-remove"></span>
+                            </button>
+                            <button type="button" class="btn btn-info" ng-click="moveToToDo(task)">
+                                <span class="glyphicon glyphicon-arrow-left"></span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
