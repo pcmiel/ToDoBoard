@@ -30,7 +30,7 @@ module.exports = function (grunt) {
                 },
 
                 app: {
-                    files: ['./view1/**']
+                    files: ['./**']
                 }
             }
         }
@@ -41,6 +41,7 @@ module.exports = function (grunt) {
     ]);
 
     grunt.registerTask('develop', function () {
+
         //grunt.task.run('connect:local:keepalive');
         grunt.task.run('connect:local', 'watch');
     });

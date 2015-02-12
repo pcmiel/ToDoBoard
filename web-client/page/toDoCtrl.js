@@ -1,8 +1,19 @@
 'use strict';
 
-angular.module('myApp.toDoCtrl', [])
+angular.module('myApp.toDoCtrl', ['page.service'])
 
-    .controller('View1Ctrl', ['$http', '$scope', '$modal', function ($http, $scope, $modal) {
+    .controller('View1Ctrl', ['$http', '$scope', '$modal', 'service', function ($http, $scope, $modal, service) {
+
+        $scope.init = function () {
+            $scope.tasks = [];
+            service.getAllTasks().success(function (data) {
+                $scope.tasks = data.tasks;
+            }).error(function (data) {
+                console.log('problem: ' + data);
+                $scope.openErrorModal();
+            });
+        };
+
         $scope.moveToBacklog = function (task) {
             task.type = 0;
         };
@@ -32,9 +43,15 @@ angular.module('myApp.toDoCtrl', [])
             return task.type === 3;
         };
         var addNewToDoTask = function (description) {
-            $scope.lastId++;
-            var task = {'id': $scope.lastId, content: description, type: 1}
+            var task = {'id': 1, description: description, type: 1}
             $scope.tasks.push(task);
+            postNewTask(task);
+        };
+
+        var postNewTask = function (task) {
+            service.postNewTask(task).success(function (data) {
+                console.log(data);
+            });
         };
         $scope.openModal = function () {
             var modalInstance = $modal.open({
@@ -47,46 +64,18 @@ angular.module('myApp.toDoCtrl', [])
             })
         };
 
-
-        $scope.lastId = 6;
-        $scope.tasks = [
-            {
-                'id': 0,
-                'content': 'Backlog1',
-                'type': 0
-            },
-            {
-                'id': 1,
-                'content': 'Todo',
-                'type': 1
-            },
-            {
-                'id': 2,
-                'content': 'In progess',
-                'type': 2
-            },
-            {
-                'id': 3,
-                'content': 'In progress2',
-                'type': 2
-            },
-            {
-                'id': 4,
-                'content': 'In progress3',
-                'type': 2
-            },
-            {
-                'id': 5,
-                'content': 'Done',
-                'type': 3
-            },
-            {
-                'id': 6,
-                'content': 'Done2',
-                'type': 3
-            },
-        ];
-    }])
+        $scope.openErrorModal = function () {
+            var modalInstance = $modal.open({
+                templateUrl: 'page/error-modal.html',
+                size: 'sm' ,
+                controller: 'View1Ctrl'
+            });
+            $scope.close = function () {
+                modalInstance.dismiss('close');
+            };
+        };
+    }]
+)
 
     .controller('NewTaskCtrl', function ($scope, $modalInstance) {
 
