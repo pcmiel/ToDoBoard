@@ -1,5 +1,5 @@
 angular.module('page.service', [])
-    .factory('service', ['$http', function ($http) {
+    .factory('pageService', ['$http', function ($http) {
 
         var URL = 'http://10.57.168.3:8080/';
         return {

@@ -1,20 +1,23 @@
 <!DOCTYPE html>
-<html lang="en" ng-app="myApp" class="no-js">
+<html lang="en" ng-app="toDoBoard" class="no-js">
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>ToDo AngularJS App</title>
     <link rel="stylesheet" type="text/css" href="bower_components/bootstrap/dist/css/bootstrap.css"/>
     <script src="bower_components/angular/angular.js"></script>
-    <script src="bower_components/angular-bootstrap/ui-bootstrap-tpls.js"></script>
-    <script src="page/toDoCtrl.js"></script>
-    <script src="page/service.js"></script>
+    <script src="bower_components/angular-strap/dist/angular-strap.min.js"></script>
+    <script src="page/js/module.js"></script>
+    <script src="page/js/controller.js"></script>
+    <script src="page/js/service.js"></script>
+    <script src="page/js/newTaskDirective.js"></script>
+    <script src="page/js/singleTaskDirective.js"></script>
     <script src="app.js"></script>
 </head>
 <body>
 
 <div ng-view class="container">
-  <div ng-include="'page/toDoBoard.html'"></div>
+  <div ng-include="'page/html/toDoBoard.html'"></div>
 </div>
 
 </body>
